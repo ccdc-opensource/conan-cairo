@@ -157,6 +157,7 @@ class CairoConan(ConanFile):
                         env_build.make(args=['-C', os.path.join('util', 'cairo-gobject')] + args)
                     else:
                         args.append('CAIRO_HAS_GOBJECT_FUNCTIONS=0')
+                        env_build.make(args=args)
 
         self._make_pkg_config()
 
