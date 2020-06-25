@@ -16,3 +16,6 @@ extends:
       - pkg-config
     centos_yum_preinstall:
       - which
+    build_types:
+      - Release
+      - Debug
