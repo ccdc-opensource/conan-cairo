@@ -65,8 +65,6 @@ class CairoConan(ConanFile):
             self.build_requires('7zip/19.00')
             if "CONAN_BASH_PATH" not in os.environ:
                 self.build_requires('msys2/20190524')
-        # if not tools.which("pkg-config"):
-        #     self.build_requires("pkg-config_installer/0.29.2@bincrafters/stable")
         self.build_requires("libtool/2.4.6@")
 
     @property
