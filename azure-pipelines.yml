@@ -12,5 +12,7 @@ extends:
     package_version: 1.17.2
     destination_repository: ccdc-3rdparty-conan
     artifactory_api_key: $(artifactory.api.key)
+    macos_brew_preinstall:
+      - pkg-config
     centos_yum_preinstall:
       - which
