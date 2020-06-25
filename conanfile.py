@@ -151,7 +151,8 @@ class CairoConan(ConanFile):
                     args.append('LIBPNG_PATH=%s' % self.deps_cpp_info['libpng'].rootpath)
                     args.append('PIXMAN_PATH=%s' % self.deps_cpp_info['pixman'].rootpath)
                     args.append('FREETYPE_PATH=%s' % self.deps_cpp_info['freetype'].rootpath)
-                    args.append('GOBJECT_PATH=%s' % self.deps_cpp_info['glib'].rootpath)
+                    if self.options.enable_glib:
+                        args.append('GOBJECT_PATH=%s' % self.deps_cpp_info['glib'].rootpath)
                     
                     env_build.make(args=args)
                     env_build.make(args=['-C', os.path.join('util', 'cairo-gobject')] + args)
