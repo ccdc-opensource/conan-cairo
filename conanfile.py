@@ -224,16 +224,19 @@ class CairoConan(ConanFile):
             self.copy(pattern="cairo-ps.h", dst=inc, src=src)
             self.copy(pattern="cairo-pdf.h", dst=inc, src=src)
             self.copy(pattern="cairo-svg.h", dst=inc, src=src)
-            self.copy(pattern="cairo-gobject.h", dst=inc, src=cairo_gobject)
+            if self.options.enable_glib:
+                self.copy(pattern="cairo-gobject.h", dst=inc, src=cairo_gobject)
             self.copy(pattern="*.pc", dst=os.path.join("lib", "pkgconfig"), src=src)
             if self.options.shared:
                 self.copy(pattern="*cairo.lib", dst="lib", src=src, keep_path=False)
                 self.copy(pattern="*cairo.dll", dst="bin", src=src, keep_path=False)
-                self.copy(pattern="*cairo-gobject.lib", dst="lib", src=cairo_gobject, keep_path=False)
-                self.copy(pattern="*cairo-gobject.dll", dst="bin", src=cairo_gobject, keep_path=False)
+                if self.options.enable_glib:
+                    self.copy(pattern="*cairo-gobject.lib", dst="lib", src=cairo_gobject, keep_path=False)
+                    self.copy(pattern="*cairo-gobject.dll", dst="bin", src=cairo_gobject, keep_path=False)
             else:
                 self.copy(pattern="*cairo-static.lib", dst="lib", src=src, keep_path=False)
-                self.copy(pattern="*cairo-gobject.lib", dst="lib", src=cairo_gobject, keep_path=False)
+                if self.options.enable_glib:
+                    self.copy(pattern="*cairo-gobject.lib", dst="lib", src=cairo_gobject, keep_path=False)
                 shutil.move(os.path.join(self.package_folder, 'lib', "cairo-static.lib"),
                             os.path.join(self.package_folder, 'lib', "cairo.lib"))
 
