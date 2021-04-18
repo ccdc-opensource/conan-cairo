@@ -14,8 +14,8 @@ extends:
     destination_repository: ccdc-3rdparty-conan
     # macos_brew_preinstall:
     #   - pkg-config
-    # centos_yum_preinstall:
-    #   - which
+    centos_yum_preinstall:
+      - which
     build_types:
       - Release
       - Debug
