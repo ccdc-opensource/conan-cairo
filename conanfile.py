@@ -195,12 +195,15 @@ class CairoConan(ConanFile):
                 configure_args.extend(['--enable-static', '--disable-shared'])
 
             env_build = AutoToolsBuildEnvironment(self)
+            if self.settings.os == 'Linux':
+                configure_args.extend(['--host', 'x86_64-pc-linux-gnu'])
+            if self.settings.os == 'Macos':
+                configure_args.extend(['--host', 'x86_64-apple-darwin19.6.0'])
             if self.settings.os == 'Macos':
                 env_build.link_flags.extend(['-framework CoreGraphics',
                                              '-framework CoreFoundation'])
-                configure_args.extend(['--host', 'x86_64-apple-darwin19.6.0'])
             if str(self.settings.compiler) in ['gcc', 'clang', 'apple-clang']:
-                env_build.flags.append('-Wno-enum-conversion')
+                env_build.flags.append('-Wno-enum-conversion')                
             with tools.environment_append(env_build.vars):
                 self.run('PKG_CONFIG_PATH=%s NOCONFIGURE=1 ./autogen.sh' % pkg_config_path)
                 env_build.pic = self.options.fPIC
