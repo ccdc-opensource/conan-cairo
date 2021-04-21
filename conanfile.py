@@ -198,6 +198,7 @@ class CairoConan(ConanFile):
             if self.settings.os == 'Macos':
                 env_build.link_flags.extend(['-framework CoreGraphics',
                                              '-framework CoreFoundation'])
+                configure_args.extend(['--host', 'x86_64-apple-darwin19.6.0'])
             if str(self.settings.compiler) in ['gcc', 'clang', 'apple-clang']:
                 env_build.flags.append('-Wno-enum-conversion')
             with tools.environment_append(env_build.vars):
