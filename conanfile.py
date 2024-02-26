@@ -6,7 +6,7 @@ import shutil
 
 class CairoConan(ConanFile):
     name = "cairo"
-    version = "1.17.2"
+    version = "1.17.8"
     description = "Cairo is a 2D graphics library with support for multiple output devices"
     topics = ("conan", "cairo", "graphics")
     url = "https://github.com/bincrafters/conan-cairo"
@@ -48,7 +48,7 @@ class CairoConan(ConanFile):
 
     def requirements(self):
         if self.options.enable_ft:
-            self.requires("freetype/2.10.4")
+            self.requires("freetype/2.13.2")
         if self.settings.os != "Windows" and self.options.enable_fc:
             self.requires("fontconfig/2.13.93")
         if self.settings.os == 'Linux':
@@ -56,9 +56,9 @@ class CairoConan(ConanFile):
                 self.requires("xorg/system")
         if self.options.enable_glib:
             self.requires("glib/2.64.0@bincrafters/stable")
-        self.requires("zlib/1.2.11")
+        self.requires("zlib/1.2.13")
         self.requires("pixman/0.40.0")
-        self.requires("libpng/1.6.37")
+        self.requires("libpng/1.6.42")
 
     def build_requirements(self):
         if self.settings.os == 'Windows':
