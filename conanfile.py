@@ -85,9 +85,9 @@ class CairoConan(ConanFile):
         os.rename('cairo-%s' % self.version, self._source_subfolder)
         os.unlink(archive_name)
         
-        for filename in glob.glob("patches/*.patch"):
-            self.output.info('applying patch "%s"' % filename)
-            tools.patch(base_path=self._source_subfolder, patch_file=filename)
+        #for filename in glob.glob("patches/*.patch"):
+        #    self.output.info('applying patch "%s"' % filename)
+        #    tools.patch(base_path=self._source_subfolder, patch_file=filename)
 
     def build(self):
         if self.is_msvc:
